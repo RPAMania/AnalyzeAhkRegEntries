@@ -7,18 +7,14 @@
     TEXT_PLACEHOLDER: "'{1}'",
 
     AHK2_REMOVED_VALUE: "The entry '{1}' has been removed by AHK2 installer",
-    AHK2_OVERWRITTEN_VALUE: "The value '{2}' of the registry branch '{1}' has been overwritten by AHK2 installer",
+    AHK2_OVERWRITTEN_VALUE: "The value '{2}' of the registry branch '{1}' has been "
+        . "overwritten by AHK2 installer",
     
     BRANCH_MISSING: "The registry branch '{1}' is missing.",
     VALUE_MISSING: "The {2} of the registry branch '{1}' is missing.",
-    ; VALUE_MISSING: "The {2} for the key '{3}' of the registry branch '{1}' is missing.",
     VALUE_MISMATCH: "The {2} of the registry branch '{1}' " .
-    ; VALUE_MISMATCH: "The {2} for the key '{3}' of the registry branch '{1}' " .
-        ; "does not match the expected value '{4}'.",
         "does not match the expected value '{3}'.",
     VALUE_CHANGED: "The {2} of the registry branch '{1}' " .
-    ; VALUE_CHANGED: "The {2} for the key '{3}' of the registry branch '{1}' " .
-        ; "has been modified from the original value '{4}'."
         "has been modified from the original value '{3}'."
   }
 
@@ -48,7 +44,8 @@
    * @param {boolean} isDefaultValue
    * @returns {RegErrorMessage}
    */
-  __New(branchName, isBranchMissing, valueName := "", isValueMissing := true, value := "", valueExpected := "", isDefaultValue := true)
+  __New(branchName, isBranchMissing, valueName := "", isValueMissing := true, value := "", 
+      valueExpected := "", isDefaultValue := true)
   {
     this.branch.name := branchName
     this.branch.isMissing := isBranchMissing

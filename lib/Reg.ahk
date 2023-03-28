@@ -5,9 +5,6 @@
 
   static Analyze(ahkVersion, onCompleteCallback)
   {
-    ; HKEY_CURRENT_USER\SOFTWARE\AutoHotkey\Launcher
-    ; HKEY_LOCAL_MACHINE\SOFTWARE\AutoHotkey
-    ; HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\AutoHotkey
     dotAhkErrors := []
     ahkScriptErrors := []
   
@@ -37,7 +34,6 @@
     if (regObject.HasOwnProp("branch"))
     {
       accumulatedBranch := regObject.branch
-      ; accumulatedBranch .= (accumulatedBranch == "" ? "" : "\") regObject.branch
     }
     else if (accumulatedBranch == "")
     {
@@ -162,7 +158,7 @@
               try
               {
                 registryValue := RegRead(
-                    accumulatedBranch "\" registryEntryName, nonDefaultRegistryEntryName) ; "FileName"
+                    accumulatedBranch "\" registryEntryName, nonDefaultRegistryEntryName)
 
                 if (registryValue !== expectedValue)
                 {
@@ -176,6 +172,7 @@
                 else
                 {
                   ; OK
+
                   regEntries.Push(RegSuccess(accumulatedBranch "\" registryEntryName, 
                       isBranchMissing := false, nonDefaultRegistryEntryName, 
                       isValueMissing := false, registryValue, expectedValue, 
@@ -201,13 +198,6 @@
             regEntries.Push(this.__DoAnalyze(
                 ahkVersion, subValue, accumulatedBranch "\" registryEntryName)*)
           }
-          /*
-          else
-          {
-            throw Error(Format("Unknown value for the key '{1}' under the registry branch '{2}'", 
-                registryEntryName, accumulatedBranch))
-          }
-          */
         }
       }
     }

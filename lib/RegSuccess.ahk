@@ -2,7 +2,7 @@
 
 class RegSuccess extends RegResult
 {
-   __New(params*)
+  __New(params*)
   {
     super.__New(params*)
   }

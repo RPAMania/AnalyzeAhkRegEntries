@@ -139,19 +139,6 @@
         }
       }
     }
-    /*
-    for subKey in RegSettings.v2.dotAhk.subKeys[1].ShellNew
-    {
-      for name, property in subKey.OwnProps()
-      {
-        if (name == "ShellNew")
-        {
-          v2ShellNew := property
-          break
-        }
-      }
-    }
-    */
 
     v2CompileCommand := v2EditCommand := v2LaunchCommand 
         := v2OpenCommand := v2RunAsCommand := v2UIAccessCommand := 0
@@ -183,13 +170,9 @@
 
     ; v1 ShellNew is by default a fixed value
 
-    /*
-      '"C:\Program Files\AutoHotkey\UX\AutoHotkeyUX.exe" 
-      "C:\Program Files\AutoHotkey\UX\ui-newscript.ahk" "%1"' (or similar)
-    */
-    ; v2
-
-
+    ; v2: '"C:\Program Files\AutoHotkey\UX\AutoHotkeyUX.exe" 
+    ;      "C:\Program Files\AutoHotkey\UX\ui-newscript.ahk" "%1"' (or similar)
+    
     RegSettings.v2.dotAhk.subKeys[1].ShellNew.nonDefaultEntries[1].value := 
         Format(RegSettings.v2.dotAhk.subKeys[1].ShellNew.nonDefaultEntries[1].value, "`""
             RegSettings.ahkLauncherFolder "\AutoHotkeyUX.exe`" `"" . 
@@ -486,17 +469,12 @@
                 value: "{1}"
               }
             ]
-            /*
-              \"C:\\Program Files\\AutoHotkey\\UX\\AutoHotkeyUX.exe\" 
-              \"C:\\Program Files\\AutoHotkey\\UX\\ui-newscript.ahk\" \"%1\""
-            */
           }
         }
       ]
     },
     ahkScript:
     {
-      ; branch: "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\AutoHotkeyScript\Shell",
       branch: "HKEY_CLASSES_ROOT\AutoHotkeyScript",
       shouldHaveDefaultValue: true,
       expectedDefaultValue: "AutoHotkey Script",
@@ -571,10 +549,6 @@
                     {
                       Command:
                       {
-                        /*
-                          "\"C:\\Program Files\\AutoHotkey\\UX\\AutoHotkeyUX.exe\" 
-                          \"C:\\Program Files\\AutoHotkey\\UX\\launcher.ahk\" /Launch \"%1\" %*"
-                        */
                         shouldHaveDefaultValue: true,
                         expectedDefaultValue: "{1}"
                       }
@@ -667,5 +641,4 @@
       ]
     }
   }
-
 }

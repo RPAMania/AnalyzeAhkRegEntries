@@ -49,7 +49,10 @@ DisplayResults(dotAhkBranch, dotAhkResults, ahkScriptBranch, ahkScriptResults)
   
   imageList := IL_Create(4)
   
-  listView := resultsGui.Add("ListView", "vGUIListView NoSortHdr Grid NoSort -LV0x10 w1040 r20", 
+  MonitorGet(, &monitorLeft, , &monitorRight)
+  
+  listView := resultsGui.Add("ListView", "vGUIListView NoSortHdr Grid NoSort -LV0x10 w" 
+      Min(monitorRight - monitorLeft, 1040) " r20", 
       [ "", "Notification", "Key Name", "Current Value", "Expected/Initial Value", "Branch" ])
   
   listView.SetImageList(imageList)
@@ -59,8 +62,6 @@ DisplayResults(dotAhkBranch, dotAhkResults, ahkScriptBranch, ahkScriptResults)
   IL_Add(imageList, "shell32.dll",  78) ; Warning – Yellow triangle with black exclamation point
   IL_Add(imageList, "shell32.dll", 132) ; Error – Red X
 
-  ; LV.Add("Icon" . A_Index, A_Index, "n/a")
-  
   for regBranchName, regBranchResults in Map(
       dotAhkBranch, dotAhkResults, 
       ahkScriptBranch, ahkScriptResults)
@@ -111,6 +112,7 @@ DisplayResults(dotAhkBranch, dotAhkResults, ahkScriptBranch, ahkScriptResults)
   }
 
   resultsGui.Show("AutoSize")
+
   mainGui.Opt("+Disabled")
   listView.GetPos(, , &lvWidth, &lvHeight)
   WinGetClientPos(, , &guiWidth, &guiHeight, WinExist())
