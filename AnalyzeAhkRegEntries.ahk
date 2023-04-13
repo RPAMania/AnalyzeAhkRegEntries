@@ -5,17 +5,16 @@
  * @file AnalyzeAhkRegEntries.ahk
  * @author TJay🐦
  * @date 2023/03/28
- * @version 0.0.1
+ * @version 0.1.0
  ***********************************************************************/
 
-#Requires AutoHotkey v2
-#Include lib
-#Include Reg.ahk
-#Include RegSettings.ahk
-#Include RegError.ahk
-#Include RegWarning.ahk
-#Include RegNote.ahk
-#Include RegSuccess.ahk
+#Requires AutoHotkey v2.0
+#Include <Reg>
+#Include <RegSettings>
+#Include <RegError>
+#Include <RegWarning>
+#Include <RegNote>
+#Include <RegSuccess>
 
 if (!A_IsAdmin)
 {
